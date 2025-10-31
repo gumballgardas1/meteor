@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeteorPlus with GumballGardas</title>
+<link rel="icon" href="https://i.hizliresim.com/3zttjyk.png">
+<meta property="og:title" content="MeteorPlus with GumballGardas">
+<meta property="og:description" content="MeteorPlus with GumballGardas - Addon Tanıtımı">
+<meta property="og:image" content="https://i.hizliresim.com/3zttjyk.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+@font-face {
+    font-family: 'Grottel Bold';
+    src: url('https://fonts.cdnfonts.com/s/70377/Grottel-Bold.woff') format('woff');
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Grottel Bold', sans-serif; }
+
+body { 
+    background:black; 
+    color:#0fffD3; 
+    overflow-x:hidden; 
+    width:100vw; 
+}
+
+/* Preloader */
+#preloader {
+    position: fixed; top:0; left:0;
+    width:100%; height:100%;
+    display:flex; justify-content:center; align-items:center;
+    background:black; z-index:9999; font-size:2em; color:#0fffD3;
+    flex-direction:column;
+}
+#preloader span { margin-top:10px; font-size:1em; color:white; }
+
+/* Background blur */
+.bg-container {
+    position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-1;
+}
+.bg-container::before {
+    content:"";
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    background: url('https://i.hizliresim.com/inzdozx.png') center/cover no-repeat;
+    filter: blur(60%); opacity:1;
+}
+
+/* Particle Animation */
+.particle { position:absolute; border-radius:50%; background: rgba(15,255,211,0.8); animation: float 3s infinite; }
+@keyframes float { 0% { transform: translate(0,0) scale(0.5);} 50%{transform:translate(20px,-20px) scale(1);} 100%{transform:translate(0,0) scale(0.5);} }
+
+.container { display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100vh; text-align:center; padding:20px; position:relative; max-width:100vw; }
+
+/* Başlık */
+h1 { font-size:3em; margin-bottom:20px; color:white; position:relative; z-index:1; }
+
+/* Butonlar */
+.buttons { display:flex; gap:20px; margin-bottom:50px; flex-wrap:wrap; position:relative; z-index:1; justify-content:center; }
+button, .btn-outline { font-size:1.3em; padding:18px 35px; border-radius:10px; cursor:pointer; transition:0.3s; }
+button { background: rgba(15,255,211,1); border:none; color:black; position:relative; }
+button small { display:block; font-size:0.8em; margin-top:3px; color:black; }
+button:hover { opacity:0.8; }
+.btn-outline { background:none; border: 2px solid rgba(15,255,211,1); color: rgba(15,255,211,1); }
+.btn-outline:hover { background: rgba(15,255,211,0.1); }
+
+/* Features */
+.category { width:100%; max-width:1000px; text-align:left; margin-bottom:20px; position:relative; z-index:1; padding:0 10px; }
+.category h2 { color:white; font-size:2em; margin-bottom:15px; }
+.features { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:25px; margin-bottom:50px; }
+.card { background: rgba(0,0,0,0.7); border: 1px solid rgba(15,255,211,0.5); padding:25px; border-radius:15px; transition:0.3s; word-wrap: break-word; }
+.card:hover { transform: scale(1.05); border-color: rgba(15,255,211,1); }
+.card h3 { margin-bottom:12px; font-size:1.2em; }
+.card p { font-size:0.95em; color:white; }
+
+/* Responsive mobil */
+@media(max-width:900px){
+    h1{font-size:2.5em;} 
+    button, .btn-outline{padding:15px 30px; font-size:1.2em;} 
+    .features {grid-template-columns: repeat(auto-fit,minmax(180px,1fr));}
+}
+@media(max-width:600px){
+    h1{font-size:2em;} 
+    .buttons {flex-direction:column; gap:12px;} 
+    .features {grid-template-columns: repeat(auto-fit,minmax(100%,1fr));} 
+    .category {padding:0 5px;}
+}
+</style>
+</head>
+<body>
+<div id="preloader">
+    Loading...
+</div>
+
+<div class="bg-container"></div>
+
+<div class="container" id="main-content" style="display:none;">
+    <h1>MeteorPlus with GumballGardas</h1>
+
+    <!-- Random bubble particles -->
+    <script>
+    for(let i=0;i<30;i++){
+        let p=document.createElement('div');
+        p.className='particle';
+        p.style.width=Math.random()*10+6+'px';
+        p.style.height=p.style.width;
+        p.style.top=Math.random()*100+'%';
+        p.style.left=Math.random()*100+'%';
+        p.style.animationDuration=(2+Math.random()*3)+'s';
+        document.body.appendChild(p);
+    }
+    </script>
+
+    <div class="buttons">
+        <button onclick="window.open('https://github.com/gumballgardas1/MeteorPlusGumballGardas/raw/refs/heads/main/GumballClient-0.1.jar','_blank')">
+            Download<small>1.21+</small>
+        </button>
+        <div class="btn-outline" onclick="window.open('https://gitlab.com/gumballgardas/meteorpluswithgumballgardas','_blank')">Source</div>
+    </div>
+
+    <div class="category">
+        <h2>Modules</h2>
+        <div class="features">
+            <div class="card"><h3>ArmorNotifications</h3><p>Warns you in chat when your armor is low.</p></div>
+            <div class="card"><h3>AutoBow</h3><p>BowSpam but faster</p></div>
+            <div class="card"><h3>AutoEZ</h3><p>Sends ez message on kill.</p></div>
+            <div class="card"><h3>FeetPlace</h3><p>Better Surround</p></div>
+            <div class="card"><h3>Fireworks</h3><p>Automatically fires rockets when boost ends.</p></div>
+            <div class="card"><h3>InstantElytra</h3><p>Auto starts elytra flight on jump.</p></div>
+            <div class="card"><h3>NewChunks</h3><p>Detects new chunks.</p></div>
+            <div class="card"><h3>NoJumpDelay</h3><p>Removes jump delay.</p></div>
+            <div class="card"><h3>PhaseESP</h3><p>Highlights safe blocks to phase into.</p></div>
+            <div class="card"><h3>RPC</h3><p>Discord Rich Presence with fixed settings.</p></div>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>HUD</h2>
+        <div class="features">
+            <div class="card"><h3>Radar</h3><p>Displays a radar showing nearby entities.</p></div>
+            <div class="card"><h3>Welcomer</h3><p>Displays a welcome message with your player name.</p></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+window.addEventListener('load', function(){
+    document.getElementById('preloader').style.display='none';
+    document.getElementById('main-content').style.display='flex';
+});
+</script>
+</body>
+</html>
