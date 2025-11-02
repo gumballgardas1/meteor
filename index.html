@@ -34,7 +34,7 @@ body {
 }
 #preloader span { margin-top:10px; font-size:1em; color:white; }
 
-/* Background blur */
+/* Background (no blur now) */
 .bg-container {
     position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-1;
 }
@@ -42,7 +42,7 @@ body {
     content:"";
     position:absolute; top:0; left:0; width:100%; height:100%;
     background: url('https://i.hizliresim.com/inzdozx.png') center/cover no-repeat;
-    filter: blur(60%); opacity:1;
+    opacity:1;
 }
 
 /* Particle Animation */
@@ -55,13 +55,51 @@ body {
 h1 { font-size:3em; margin-bottom:20px; color:white; position:relative; z-index:1; }
 
 /* Butonlar */
-.buttons { display:flex; gap:20px; margin-bottom:50px; flex-wrap:wrap; position:relative; z-index:1; justify-content:center; }
-button, .btn-outline { font-size:1.3em; padding:18px 35px; border-radius:10px; cursor:pointer; transition:0.3s; }
+.buttons { display:flex; gap:20px; margin-bottom:50px; flex-wrap:wrap; position:relative; z-index:1; justify-content:center; flex-wrap:wrap; }
+button, .btn-outline, .btn-discord { font-size:1.3em; padding:18px 35px; border-radius:10px; cursor:pointer; transition:0.3s; }
+button small, .btn-outline small, .btn-discord small { display:block; font-size:0.8em; margin-top:3px; }
+
 button { background: rgba(15,255,211,1); border:none; color:black; position:relative; }
-button small { display:block; font-size:0.8em; margin-top:3px; color:black; }
+button small { color:black; }
 button:hover { opacity:0.8; }
-.btn-outline { background:none; border: 2px solid rgba(15,255,211,1); color: rgba(15,255,211,1); }
+
+.btn-outline { background:none; border: 2px solid rgba(15,255,211,1); color:#fff; }
+.btn-outline small { color:#fff; }
 .btn-outline:hover { background: rgba(15,255,211,0.1); }
+
+/* Discord özel buton */
+.btn-discord {
+    background: linear-gradient(90deg, rgba(15,255,211,1) 50%, transparent 50%);
+    border: 2px solid rgba(15,255,211,1);
+    color:black;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+}
+.btn-discord::before {
+    content:"";
+    position:absolute;
+    top:0; left:-100%;
+    width:100%; height:100%;
+    background: rgba(15,255,211,0.2);
+    transition:0.4s;
+}
+.btn-discord:hover::before { left:0; }
+.btn-discord:hover { transform: scale(1.05); }
+
+/* Yazıları ortadan renk ayırma (düzeltilmiş versiyon) */
+.btn-discord span {
+    display:inline-block;
+    background: linear-gradient(90deg, black 50%, white 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.btn-discord small {
+    display:inline-block;
+    background: linear-gradient(90deg, black 50%, white 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 /* Features */
 .category { width:100%; max-width:1000px; text-align:left; margin-bottom:20px; position:relative; z-index:1; padding:0 10px; }
@@ -75,7 +113,7 @@ button:hover { opacity:0.8; }
 /* Responsive mobil */
 @media(max-width:900px){
     h1{font-size:2.5em;} 
-    button, .btn-outline{padding:15px 30px; font-size:1.2em;} 
+    button, .btn-outline, .btn-discord{padding:15px 30px; font-size:1.2em;} 
     .features {grid-template-columns: repeat(auto-fit,minmax(180px,1fr));}
 }
 @media(max-width:600px){
@@ -87,16 +125,13 @@ button:hover { opacity:0.8; }
 </style>
 </head>
 <body>
-<div id="preloader">
-    Loading...
-</div>
+<div id="preloader">Loading...</div>
 
 <div class="bg-container"></div>
 
 <div class="container" id="main-content" style="display:none;">
     <h1>MeteorPlus with GumballGardas</h1>
 
-    <!-- Random bubble particles -->
     <script>
     for(let i=0;i<30;i++){
         let p=document.createElement('div');
@@ -114,7 +149,15 @@ button:hover { opacity:0.8; }
         <button onclick="window.open('https://github.com/gumballgardas1/MeteorPlusGumballGardas/raw/refs/heads/main/GumballClient-0.1.jar','_blank')">
             Download<small>1.21+</small>
         </button>
-        <div class="btn-outline" onclick="window.open('https://gitlab.com/gumballgardas/meteorpluswithgumballgardas','_blank')">Source</div>
+
+        <div class="btn-discord" onclick="window.open('https://discord.gg/WVzAmXgJKZ','_blank')">
+            <span>Discord</span><br>
+            <small>Join Us</small>
+        </div>
+
+        <div class="btn-outline" onclick="window.open('https://gitlab.com/gumballgardas/meteorpluswithgumballgardas','_blank')">
+            Source<small>v1.0</small>
+        </div>
     </div>
 
     <div class="category">
